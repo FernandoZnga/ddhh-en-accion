@@ -90,6 +90,64 @@ body {
     font-weight: 700;
 }
 
+/* Navbar Logo Styling */
+.navbar-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.navbar-logo:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive navbar logo */
+@media (max-width: 768px) {
+    .navbar-logo {
+        height: 35px;
+    }
+    
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}
+
+/* Hero Section Logo */
+.hero-logo-container {
+    position: relative;
+    display: inline-block;
+}
+
+.hero-logo {
+    max-width: 300px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    filter: brightness(1.1) contrast(1.1);
+}
+
+.hero-logo:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive hero logo */
+@media (max-width: 768px) {
+    .hero-logo {
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-logo {
+        max-width: 200px;
+    }
+}
+
 .language-toggle {
     display: flex;
     align-items: center;
@@ -721,7 +779,7 @@ footer * {
 
 /* MODAL STYLES FOR ARTICLE DISPLAY */
 
-/* Modal backdrop */
+/* Modal backdrop - HIDDEN BY DEFAULT */
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -730,7 +788,7 @@ footer * {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1050;
-    display: flex;
+    display: none; /* Hidden by default */
     align-items: center;
     justify-content: center;
     opacity: 0;
@@ -739,6 +797,7 @@ footer * {
 }
 
 .modal-backdrop.show {
+    display: flex !important; /* Show as flex when active */
     opacity: 1;
     visibility: visible;
 }
