@@ -259,11 +259,13 @@ section {
     animation: fadeInUp 0.6s ease;
 }
 
-/* Language Support Styles */
+/* Language Support Styles - DISABLED TO PREVENT TEXT HIDING */
+/* 
 [data-lang="en"] [data-es],
 [data-lang="es"] [data-en] {
     display: none;
 }
+*/
 
 /* Loading States */
 .loading {

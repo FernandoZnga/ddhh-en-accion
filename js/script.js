@@ -34,6 +34,10 @@ function updateLanguageContent() {
             } else {
                 element.textContent = content;
             }
+            // Force text visibility after content update
+            element.style.color = '';
+            element.style.visibility = 'visible';
+            element.style.opacity = '1';
         }
     });
     
@@ -354,6 +358,43 @@ function initScrollAnimations() {
     elementsToAnimate.forEach(el => observer.observe(el));
 }
 
+// Force text visibility - emergency function
+function forceTextVisibility() {
+    // Force all text elements to be visible
+    const allElements = document.querySelectorAll('*');
+    allElements.forEach(element => {
+        const computedStyle = window.getComputedStyle(element);
+        if (computedStyle.color === 'rgba(0, 0, 0, 0)' || 
+            computedStyle.color === 'transparent' ||
+            computedStyle.visibility === 'hidden' ||
+            computedStyle.opacity === '0') {
+            element.style.color = '#212529';
+            element.style.visibility = 'visible';
+            element.style.opacity = '1';
+        }
+    });
+    
+    // Specifically target card elements
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        const titles = card.querySelectorAll('h1, h2, h3, h4, h5, h6, .card-title');
+        const texts = card.querySelectorAll('p, span, div, .card-text');
+        
+        titles.forEach(title => {
+            title.style.color = '#212529';
+            title.style.fontWeight = '600';
+        });
+        
+        texts.forEach(text => {
+            if (!text.classList.contains('badge') && !text.classList.contains('btn')) {
+                text.style.color = '#495057';
+            }
+        });
+    });
+    
+    console.log('Text visibility forced!');
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Check for saved language preference
@@ -373,6 +414,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Show initial articles
     showAllArticles();
+    
+    // Force text visibility after everything loads
+    setTimeout(() => {
+        forceTextVisibility();
+    }, 100);
     
     console.log('DDHH en Acción website initialized successfully!');
 });
