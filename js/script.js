@@ -12,6 +12,8 @@ function detectBrowserLanguage() {
     document.documentElement.setAttribute("data-lang", "en");
     updateLanguageContent();
   } else {
+    // Default to Spanish for all other languages
+    currentLanguage = "es";
     document.documentElement.setAttribute("data-lang", "es");
   }
 }
@@ -689,6 +691,9 @@ document.addEventListener("DOMContentLoaded", function () {
     document.documentElement.setAttribute("data-lang", currentLanguage);
     updateLanguageContent();
   } else {
+    // Always start with Spanish as default, then detect if browser prefers English
+    currentLanguage = "es";
+    document.documentElement.setAttribute("data-lang", "es");
     detectBrowserLanguage();
   }
 
