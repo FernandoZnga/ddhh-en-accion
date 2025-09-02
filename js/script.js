@@ -360,39 +360,72 @@ function initScrollAnimations() {
 
 // Force text visibility - emergency function
 function forceTextVisibility() {
-    // Force all text elements to be visible
-    const allElements = document.querySelectorAll('*');
-    allElements.forEach(element => {
-        const computedStyle = window.getComputedStyle(element);
-        if (computedStyle.color === 'rgba(0, 0, 0, 0)' || 
-            computedStyle.color === 'transparent' ||
-            computedStyle.visibility === 'hidden' ||
-            computedStyle.opacity === '0') {
+    console.log('Starting aggressive text visibility fix...');
+    
+    // Force ALL text elements to be visible - very aggressive approach
+    const textElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, div, a, li, label');
+    textElements.forEach(element => {
+        // Skip navigation and hero elements (they should stay white)
+        if (!element.closest('.navbar') && !element.closest('.hero-section') && 
+            !element.closest('#contacto') && !element.closest('footer')) {
             element.style.color = '#212529';
             element.style.visibility = 'visible';
             element.style.opacity = '1';
+            element.style.display = 'block';
         }
     });
     
-    // Specifically target card elements
+    // Specifically target card elements with maximum force
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
+        // Force card background to be visible
+        card.style.backgroundColor = '#ffffff';
+        
         const titles = card.querySelectorAll('h1, h2, h3, h4, h5, h6, .card-title');
         const texts = card.querySelectorAll('p, span, div, .card-text');
         
         titles.forEach(title => {
-            title.style.color = '#212529';
+            title.style.color = '#212529 !important';
             title.style.fontWeight = '600';
+            title.style.visibility = 'visible';
+            title.style.opacity = '1';
+            title.style.display = 'block';
         });
         
         texts.forEach(text => {
             if (!text.classList.contains('badge') && !text.classList.contains('btn')) {
-                text.style.color = '#495057';
+                text.style.color = '#212529 !important';
+                text.style.visibility = 'visible';
+                text.style.opacity = '1';
+                text.style.display = 'block';
+                text.style.fontSize = '1rem';
             }
         });
     });
     
-    console.log('Text visibility forced!');
+    // Force section headings
+    const sectionHeadings = document.querySelectorAll('section h1, section h2, section h3, section h4, section h5, section h6');
+    sectionHeadings.forEach(heading => {
+        if (!heading.closest('.hero-section')) {
+            heading.style.color = '#212529 !important';
+            heading.style.fontWeight = '700';
+            heading.style.visibility = 'visible';
+            heading.style.opacity = '1';
+        }
+    });
+    
+    // Force all paragraphs in sections
+    const sectionParagraphs = document.querySelectorAll('section p');
+    sectionParagraphs.forEach(p => {
+        if (!p.closest('.hero-section') && !p.closest('#contacto') && !p.closest('footer')) {
+            p.style.color = '#212529 !important';
+            p.style.visibility = 'visible';
+            p.style.opacity = '1';
+            p.style.fontSize = '1rem';
+        }
+    });
+    
+    console.log('Aggressive text visibility fix completed!');
 }
 
 // Initialize everything when DOM is loaded
@@ -419,6 +452,11 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         forceTextVisibility();
     }, 100);
+    
+    // Run text visibility check periodically
+    setInterval(() => {
+        forceTextVisibility();
+    }, 2000); // Every 2 seconds
     
     console.log('DDHH en Acción website initialized successfully!');
 });
