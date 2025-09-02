@@ -362,8 +362,8 @@ function initScrollAnimations() {
 function forceTextVisibility() {
     console.log('Starting aggressive text visibility fix...');
     
-    // Force ALL text elements to be visible - very aggressive approach
-    const textElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, div, a, li, label');
+    // Force text elements to be visible without breaking layout
+    const textElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, a, li, label');
     textElements.forEach(element => {
         // Skip navigation and hero elements (they should stay white)
         if (!element.closest('.navbar') && !element.closest('.hero-section') && 
@@ -371,7 +371,27 @@ function forceTextVisibility() {
             element.style.color = '#212529';
             element.style.visibility = 'visible';
             element.style.opacity = '1';
-            element.style.display = 'block';
+            // Don't force display: block to preserve Bootstrap grid layout
+        }
+    });
+    
+    // Handle divs more carefully to preserve Bootstrap grid
+    const divElements = document.querySelectorAll('div');
+    divElements.forEach(element => {
+        // Only apply to content divs, not layout divs
+        if (!element.classList.contains('row') && 
+            !element.classList.contains('col') &&
+            !element.classList.contains('container') &&
+            !element.classList.contains('container-fluid') &&
+            !element.className.includes('col-') &&
+            !element.closest('.navbar') && 
+            !element.closest('.hero-section') && 
+            !element.closest('#contacto') && 
+            !element.closest('footer')) {
+            element.style.color = '#212529';
+            element.style.visibility = 'visible';
+            element.style.opacity = '1';
+            // Don't modify display property for divs
         }
     });
     
