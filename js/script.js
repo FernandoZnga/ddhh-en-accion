@@ -64,6 +64,10 @@ const articles = {
                 es: "Realizamos un taller especializado para brindar herramientas de apoyo emocional y legal a las familias de personas privadas de libertad.",
                 en: "We conducted a specialized workshop to provide emotional and legal support tools for families of incarcerated individuals."
             },
+            fullContent: {
+                es: "<p>El pasado 15 de enero, nuestra organización llevó a cabo un taller especializado dirigido a las familias de personas privadas de libertad. Este evento se realizó en nuestras instalaciones principales con la participación de más de 50 familias.</p><h3>Objetivos del Taller</h3><p>El taller tuvo como objetivo principal proporcionar herramientas de apoyo emocional y asesoramiento legal básico para ayudar a las familias a navegar por los complejos sistemas penitenciarios y legales.</p><h3>Actividades Realizadas</h3><p>Durante la jornada de 6 horas, se desarrollaron las siguientes actividades:</p><ul><li>Sesiones de apoyo psicológico grupal</li><li>Charlas informativas sobre derechos de las personas privadas de libertad</li><li>Asesoramiento legal gratuito</li><li>Talleres de manejo del estrés y la ansiedad</li><li>Red de apoyo entre familias</li></ul><p>Los participantes recibieron material informativo y se establecieron grupos de apoyo continuo que se reúnen mensualmente.</p><h3>Impacto y Resultados</h3><p>Al finalizar el taller, el 95% de los participantes expresaron sentirse más preparados para apoyar a sus familiares y manejar su propia situación emocional. Se logró crear una red sólida de apoyo comunitario que continúa activa.</p>",
+                en: "<p>On January 15th, our organization conducted a specialized workshop for families of incarcerated individuals. This event was held at our main facilities with the participation of more than 50 families.</p><h3>Workshop Objectives</h3><p>The workshop's main objective was to provide emotional support tools and basic legal counseling to help families navigate complex penitentiary and legal systems.</p><h3>Activities Conducted</h3><p>During the 6-hour session, the following activities were developed:</p><ul><li>Group psychological support sessions</li><li>Informative talks about the rights of incarcerated individuals</li><li>Free legal counseling</li><li>Stress and anxiety management workshops</li><li>Family support network building</li></ul><p>Participants received informational materials and continuous support groups were established that meet monthly.</p><h3>Impact and Results</h3><p>At the end of the workshop, 95% of participants expressed feeling more prepared to support their family members and manage their own emotional situation. A solid community support network was created that remains active.</p>"
+            },
             date: "15 Enero",
             image: "https://via.placeholder.com/400x250/007bff/ffffff?text=Taller+Familiar",
             month: "enero-2024"
@@ -233,7 +237,7 @@ function createArticleCard(article) {
                 </div>
                 <h5 class="card-title">${title}</h5>
                 <p class="card-text">${description}</p>
-                <a href="#" class="btn btn-outline-primary btn-sm" data-es="Leer más" data-en="Read more">
+                <a href="#" class="btn btn-outline-primary btn-sm" onclick="openArticleModal(${article.id})" data-es="Leer más" data-en="Read more">
                     ${currentLanguage === 'es' ? 'Leer más' : 'Read more'}
                 </a>
             </div>
@@ -481,7 +485,83 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('DDHH en Acción website initialized successfully!');
 });
 
+// MODAL FUNCTIONALITY FOR ARTICLES
+
+// Open article modal
+function openArticleModal(articleId) {
+    const article = findArticleById(articleId);
+    if (!article) return;
+    
+    const modal = document.getElementById('articleModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDate = document.getElementById('modalDate');
+    const modalContent = document.getElementById('modalContent');
+    
+    // Set modal content
+    modalTitle.textContent = article.title[currentLanguage];
+    modalDate.textContent = article.date;
+    
+    // Set full content if available, otherwise use description
+    const content = article.fullContent ? 
+        article.fullContent[currentLanguage] : 
+        `<p>${article.description[currentLanguage]}</p>`;
+    modalContent.innerHTML = content;
+    
+    // Show modal with animation
+    modal.style.display = 'flex';
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 10);
+    
+    // Prevent body scrolling
+    document.body.style.overflow = 'hidden';
+    
+    // Update close button text
+    const closeBtn = modal.querySelector('.modal-footer .btn');
+    closeBtn.textContent = currentLanguage === 'es' ? 'Cerrar' : 'Close';
+}
+
+// Close article modal
+function closeArticleModal() {
+    const modal = document.getElementById('articleModal');
+    
+    // Hide modal with animation
+    modal.classList.remove('show');
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300);
+    
+    // Restore body scrolling
+    document.body.style.overflow = 'auto';
+}
+
+// Find article by ID
+function findArticleById(articleId) {
+    for (const month in articles) {
+        const article = articles[month].find(a => a.id === articleId);
+        if (article) return article;
+    }
+    return null;
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', function(e) {
+    const modal = document.getElementById('articleModal');
+    if (e.target === modal) {
+        closeArticleModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeArticleModal();
+    }
+});
+
 // Export functions for global access
 window.toggleLanguage = toggleLanguage;
 window.filterByMonth = filterByMonth;
 window.showAllArticles = showAllArticles;
+window.openArticleModal = openArticleModal;
+window.closeArticleModal = closeArticleModal;
