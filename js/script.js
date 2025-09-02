@@ -196,6 +196,9 @@ function filterByMonth(month) {
     const container = document.getElementById('articles-container');
     const monthArticles = articles[month] || [];
     
+    // Always scroll to Our Activities section first
+    document.getElementById('actividades').scrollIntoView({ behavior: 'smooth' });
+    
     if (monthArticles.length === 0) {
         container.innerHTML = `
             <div class="col-12 text-center">
@@ -207,6 +210,7 @@ function filterByMonth(month) {
         return;
     }
     
+    // Clear container and show filtered articles
     container.innerHTML = '';
     
     monthArticles.forEach(article => {
@@ -214,8 +218,11 @@ function filterByMonth(month) {
         container.appendChild(articleCard);
     });
     
-    // Scroll to articles section
-    document.getElementById('actividades').scrollIntoView({ behavior: 'smooth' });
+    // Add a small delay to ensure smooth scrolling completes before content loads
+    setTimeout(() => {
+        // Force text visibility on newly created cards
+        forceTextVisibility();
+    }, 300);
 }
 
 // Create article card element
