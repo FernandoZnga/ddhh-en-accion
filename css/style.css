@@ -11,11 +11,30 @@
     --dark-color: #343a40;
 }
 
-/* General Styles */
+/* General Styles - Force text visibility */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    line-height: 1.6 !important;
+    color: #212529 !important;
+    background-color: #ffffff !important;
+}
+
+/* Force all text elements to be visible */
+* {
+    color: inherit !important;
+}
+
+/* Override Bootstrap text utilities */
+.text-muted {
+    color: #6c757d !important;
+}
+
+.text-white {
+    color: #ffffff !important;
+}
+
+.text-dark {
+    color: #212529 !important;
 }
 
 .min-vh-50 {
@@ -445,4 +464,124 @@ footer p {
 .bg-light h5,
 .bg-light h6 {
     color: #212529;
+}
+
+/* FORCE TEXT VISIBILITY - AGGRESSIVE OVERRIDES */
+
+/* Card text forced visibility */
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6 {
+    color: #212529 !important;
+    font-weight: 600 !important;
+}
+
+.card p, .card span, .card div, .card a {
+    color: #495057 !important;
+}
+
+.card .card-title {
+    color: #212529 !important;
+    font-weight: 600 !important;
+    font-size: 1.25rem !important;
+}
+
+.card .card-text {
+    color: #495057 !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+}
+
+/* Section headings forced visibility */
+section h1, section h2, section h3, section h4, section h5, section h6 {
+    color: #212529 !important;
+    font-weight: 700 !important;
+}
+
+section p, section span, section div {
+    color: #495057 !important;
+}
+
+/* Specific section overrides */
+#nosotros * {
+    color: #212529 !important;
+}
+
+#nosotros p, #nosotros .card-text {
+    color: #495057 !important;
+}
+
+#actividades * {
+    color: #212529 !important;
+}
+
+#actividades p, #actividades .card-text {
+    color: #495057 !important;
+}
+
+#archivo * {
+    color: #212529 !important;
+}
+
+#archivo small {
+    color: #6c757d !important;
+}
+
+/* Archive cards specific */
+.archive-card * {
+    color: #212529 !important;
+}
+
+.archive-card small {
+    color: #6c757d !important;
+}
+
+/* Badge override */
+.badge {
+    color: #ffffff !important;
+    background-color: #007bff !important;
+    font-weight: 500 !important;
+}
+
+/* Button text override */
+.btn-outline-primary {
+    color: #007bff !important;
+    border-color: #007bff !important;
+    font-weight: 500 !important;
+}
+
+/* Navigation text - keep white on blue background */
+.navbar * {
+    color: #ffffff !important;
+}
+
+/* Hero section text - keep white on blue background */
+.hero-section * {
+    color: #ffffff !important;
+}
+
+/* Contact section text - keep white on dark background */
+#contacto * {
+    color: #ffffff !important;
+}
+
+#contacto .form-control {
+    color: #212529 !important;
+    background-color: #ffffff !important;
+}
+
+/* Footer text - keep white */
+footer * {
+    color: #ffffff !important;
+}
+
+/* Override any conflicting Bootstrap classes */
+.text-body {
+    color: #212529 !important;
+}
+
+.text-body-emphasis {
+    color: #000000 !important;
+}
+
+.text-body-secondary {
+    color: #6c757d !important;
 }
