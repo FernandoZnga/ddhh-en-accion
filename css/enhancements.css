@@ -1,0 +1,221 @@
+/* Additional styles for Freedom House inspired sections */
+
+/* Campaign Badge Animation */
+.campaign-badge {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Featured News Card */
+.featured-news {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-news:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Featured Campaign Card */
+.featured-campaign {
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-campaign::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.featured-campaign .card-body {
+    position: relative;
+    z-index: 2;
+}
+
+/* Campaign Cards */
+.campaign-card {
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.campaign-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+    border-left-color: #007bff;
+}
+
+/* Campaign Statistics */
+.campaign-stats .stat-item {
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+}
+
+.campaign-stats h4 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff !important;
+}
+
+.campaign-stats small {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    color: #ffffff !important;
+}
+
+/* Progress bars for campaigns */
+.campaign-status .progress {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.campaign-status .progress-bar {
+    border-radius: 10px;
+    transition: width 0.8s ease;
+}
+
+/* Hero buttons */
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.hero-buttons .btn {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+}
+
+/* Reports section styling */
+#reportes .card {
+    border-left: 4px solid #007bff;
+}
+
+#reportes .card:hover {
+    border-left-color: #0056b3;
+}
+
+/* Badge enhancements */
+.badge.bg-info {
+    background-color: #17a2b8 !important;
+}
+
+.badge.bg-success {
+    background-color: #28a745 !important;
+}
+
+.badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+}
+
+.badge.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+.badge.bg-secondary {
+    background-color: #6c757d !important;
+}
+
+/* Section-specific text overrides */
+#noticias * {
+    color: #212529 !important;
+}
+
+#noticias p, #noticias .card-text {
+    color: #495057 !important;
+}
+
+#campañas * {
+    color: #212529 !important;
+}
+
+#campañas p, #campañas .card-text {
+    color: #495057 !important;
+}
+
+/* Featured campaign text should stay white */
+.featured-campaign * {
+    color: #ffffff !important;
+}
+
+#reportes * {
+    color: #212529 !important;
+}
+
+#reportes p, #reportes .card-text {
+    color: #495057 !important;
+}
+
+/* Mobile responsiveness for new sections */
+@media (max-width: 768px) {
+    .featured-campaign .card-body {
+        padding: 2rem 1.5rem !important;
+    }
+    
+    .campaign-stats .col-md-4 {
+        margin-bottom: 1rem;
+    }
+    
+    .campaign-stats h4 {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .hero-buttons .btn {
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+    
+    .campaign-actions {
+        text-align: center;
+    }
+    
+    .campaign-actions .btn {
+        margin-bottom: 0.5rem;
+        width: 100%;
+    }
+    
+    .featured-news .row.g-0 {
+        flex-direction: column;
+    }
+    
+    .featured-news .col-md-6 {
+        max-width: 100%;
+    }
+}
+
+/* Better text contrast */
+.text-muted {
+    color: #6c757d !important;
+}
+
+.badge {
+    font-weight: 500 !important;
+}
