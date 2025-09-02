@@ -13,7 +13,7 @@ A responsive bilingual website for a human rights non-governmental organization 
 
 ## 🚀 Live Demo
 
-Visit the website: [https://your-username.github.io/ddhh_project](https://your-username.github.io/ddhh_project)
+Visit the website: [https://fernandoznga.github.io/ddhh_project](https://fernandoznga.github.io/ddhh_project)
 
 ## 📋 About the Organization
 
